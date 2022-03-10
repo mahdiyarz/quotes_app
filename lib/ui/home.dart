@@ -8,18 +8,20 @@ class Wisdom extends StatefulWidget {
 }
 
 class _WisdomState extends State<Wisdom> {
+  List<String> qoutes = [
+    "Change your thoughts and you change your world.",
+    "Imagination is everything. It is the preview of life’s coming attractions.",
+    "Happiness is not something ready made. It comes from your own actions."
+  ];
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
-    List<String> qoutes = [
-      "Change your thoughts and you change your world.",
-      "Imagination is everything. It is the preview of life’s coming attractions.",
-      "Happiness is not something ready made. It comes from your own actions."
-    ];
     return Scaffold(
         body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(qoutes[0]),
+        Text(qoutes[index % qoutes.length]),
         TextButton.icon(
             onPressed: _showNextQuote,
             icon: Icon(Icons.skip_next),
@@ -28,5 +30,9 @@ class _WisdomState extends State<Wisdom> {
     ));
   }
 
-  void _showNextQuote() {}
+  void _showNextQuote() {
+    setState(() {
+      index += 1;
+    });
+  }
 }
